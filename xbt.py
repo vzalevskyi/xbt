@@ -117,14 +117,14 @@ class TestFW(unittest.TestCase):
 
 
     def tearDown(self):
-        print("Link to your job: https://saucelabs.com/jobs/%s" % self.driver.session_id)
-        try:
-            if sys.exc_info() == (None, None, None):
-                sauce.jobs.update_job(self.driver.session_id, passed=True)
-            else:
-                sauce.jobs.update_job(self.driver.session_id, passed=False)
-        finally:
-            self.driver.quit()
+        self.driver.quit()
+        session_id = self.driver.session_id
+        job_name = self.id()
+        sauce_client = SauceClient(username, access_key)
+        status = (sys.exc_info() == (None, None, None))
+        sauce_client.jobs.update_job(session_id, passed=status)
+        output = "SauceOnDemandSessionID=%s job-name=%s" % (session_id, job_name)
+        log_to_file(output)
 
 if __name__ == "__main__":
     unittest.main()
