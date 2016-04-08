@@ -53,67 +53,7 @@ class TestFW(unittest.TestCase):
 
         print "Starting test in ", self.driver.capabilities["browserName"], " ", self.driver.capabilities["version"]," on ", self.driver.capabilities["platform"]
 
-        #going to the page
-        self.driver.get(data.user_data["url"])
-
-        #swithcing to the login frame and loging in
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["loginFrame"])))
-        self.driver.switch_to.frame(self.driver.find_element_by_xpath("//iframe[@name='login']"))
-        # self.driver.switch_to.frame(data.frames["loginFrame"])
-        self.waitNinput(data.xpth["username"], data.user_data["username"])
-        self.waitNinput(data.xpth["password"], data.user_data["password"])
-        self.waitNclick(data.xpth["submit"])
-        self.driver.switch_to.default_content()
-
-        #opening the WF
-        #time.sleep(2)
-        self.waitNclick(data.xpth["wfLink"])
-
-                   #app frame check
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["appFrame"])))
-        self.driver.switch_to.frame(data.frames["appFrame"])
-
-        #Inbox frame check
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["mailBoxFrame"])))
-        self.driver.switch_to.frame(data.frames["mailBoxFrame"])
-        arrows = self.driver.find_elements_by_xpath(data.xpth["nextStepsArrow"])
-        print "There are ", len(arrows), " documents in the INBOX folder"
-
-        # Sent folder
-        self.driver.switch_to.default_content()
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["appFrame"])))
-        self.driver.switch_to.frame(data.frames["appFrame"])
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["navigationFrame"])))
-        self.driver.switch_to.frame(data.frames["navigationFrame"])
-        self.waitNclick(data.xpth["sentFolder"])
-        #time.sleep(2)
-
-        self.driver.switch_to.default_content()
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["appFrame"])))
-        self.driver.switch_to.frame(data.frames["appFrame"])
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["mailBoxFrame"])))
-        self.driver.switch_to.frame(data.frames["mailBoxFrame"])
-        arrows = self.driver.find_elements_by_xpath(data.xpth["nextStepsArrow"])
-        print "There are ", len(arrows), " documents in the SENT folder"
-        self.driver.switch_to.default_content()
-
-        #Drafts folder
-        self.driver.switch_to.default_content()
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["appFrame"])))
-        self.driver.switch_to.frame(data.frames["appFrame"])
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["navigationFrame"])))
-        self.driver.switch_to.frame(data.frames["navigationFrame"])
-        self.waitNclick(data.xpth["draftsFolder"])
-        time.sleep(2)
-
-        self.driver.switch_to.default_content()
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["appFrame"])))
-        self.driver.switch_to.frame(data.frames["appFrame"])
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, data.xpth["mailBoxFrame"])))
-        self.driver.switch_to.frame(data.frames["mailBoxFrame"])
-        arrows = self.driver.find_elements_by_xpath(data.xpth["nextStepsArrow"])
-        print "There are ", len(arrows), " documents in the DRAFTS folder"
-        self.driver.switch_to.default_content()
+        self.driver.get("https://google.com")
 
 
     def tearDown(self):
