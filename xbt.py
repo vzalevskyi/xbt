@@ -1,3 +1,4 @@
+import environment
 import os
 import unittest
 import sys
@@ -9,11 +10,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 username = os.environ['SAUCE_USERNAME']
 access_key = os.environ['SAUCE_ACCESS_KEY']
 
-browsers = [{
-    "platform": "Windows 7",
-    "browserName": "internet explorer",
-    "version": "11"
-} ]
+browsers = environment.browsers
+# browsers = [{
+#     "platform": "Windows 7",
+#     "browserName": "internet explorer",
+#     "version": "11"
+# } ]
 
 
 def on_platforms(platforms):
