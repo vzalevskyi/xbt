@@ -15,6 +15,7 @@ browsers = [{
     "version": "11"
 } ]
 
+
 def on_platforms(platforms):
     def decorator(base_class):
         module = sys.modules[base_class.__module__].__dict__
