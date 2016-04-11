@@ -4,6 +4,7 @@ import sys
 import new
 from selenium import webdriver
 from sauceclient import SauceClient
+from selenium.webdriver.support.ui import WebDriverWait
 
 username = os.environ['SAUCE_USERNAME']
 access_key = os.environ['SAUCE_ACCESS_KEY']
@@ -29,10 +30,12 @@ def log_to_file(data):
         with open("result_log.txt", "a") as f:
             f.write(data + "\n")
 
+@on_platforms(browsers)
 class TestFW(unittest.TestCase):
 
     # setUp runs before each test case
     def setUp(self):
+
         self.desired_capabilities['name'] = self.id()
         self.driver = webdriver.Remote(
            command_executor="http://%s:%s@ondemand.saucelabs.com:80/wd/hub" % (username, access_key),
