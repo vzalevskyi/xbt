@@ -10,7 +10,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 username = os.environ['SAUCE_USERNAME']
 access_key = os.environ['SAUCE_ACCESS_KEY']
 
-browsers = environment.browsers
+browsers = os.environ['SAUCE_ONDEMAND_BROWSERS']
+# environment.browsers
 # browsers = [{
 #     "platform": "Windows 7",
 #     "browserName": "internet explorer",
