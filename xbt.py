@@ -11,16 +11,17 @@ from selenium.webdriver.support import expected_conditions as EC
 username = os.environ['SAUCE_USERNAME']
 access_key = os.environ['SAUCE_ACCESS_KEY']
 
-browsers = os.environ['SAUCE_ONDEMAND_BROWSERS']
+#browsers = os.environ['SAUCE_ONDEMAND_BROWSERS']
 # environment.browsers
 # browsers = [{
 #     "platform": "Windows 7",
 #     "browserName": "internet explorer",
 #     "version": "11"
 # } ]
+browsers = environment.browsers
 
 
-
+print browsers
 
 def on_platforms(platforms):
     def decorator(base_class):
@@ -42,9 +43,8 @@ class TestFW(unittest.TestCase):
 
     # setUp runs before each test case
     def setUp(self):
-        print browsers
 
-        # self.desired_capabilities['name'] = self.id()
+        self.desired_capabilities['name'] = self.id()
         self.driver = webdriver.Remote(
            command_executor="http://%s:%s@ondemand.saucelabs.com:80/wd/hub" % (username, access_key),
            desired_capabilities=self.desired_capabilities)
