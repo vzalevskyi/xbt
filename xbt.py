@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import environment
 import os
 import unittest
